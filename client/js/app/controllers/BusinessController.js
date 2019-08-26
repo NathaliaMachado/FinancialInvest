@@ -6,31 +6,26 @@ class BusinessController {
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
         this._form = $('.form');
+        this._listBusiness = new ListBusiness();
     }
 
     adiciona(event) {
         event.preventDefault();
 
-        let data = new Date(...
-            this._inputData.value
-                .split('-')
-                .map((item, indice) => item - indice % 2)
-        );
+        this._listBusiness.adiciona(this._createBusiness());
+        console.log(this._listBusiness.business);
+        this._cleanForm();
+    }
 
-        console.log(data);
-
-        let business = new Business(
-            data,
+    _createBusiness() {
+        return new Business(
+            DateHelper.textToDate(this._inputData.value),
             this._inputQuantidade.value,
             this._inputValor.value
         );
-
-        console.log(business);
-
-        this.cleanForm();
     }
 
-    cleanForm() {
+    _cleanForm() {
         this._form.reset();
         this._inputData.focus();
     }
