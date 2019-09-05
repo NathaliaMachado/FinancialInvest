@@ -9,6 +9,9 @@ class BusinessController {
         this._listBusiness = new ListBusiness();
         this._businessView = new BusinessView($('#businessView'));
         this._businessView.update(this._listBusiness);
+        this._message = new Message();
+        this._messageView = new MessageView($('#messageView'));
+        this._messageView.update(this._message);
     }
 
     adiciona(event) {
@@ -16,7 +19,10 @@ class BusinessController {
 
         this._listBusiness.adiciona(this._createBusiness());
         this._businessView.update(this._listBusiness);
-        console.log(this._listBusiness.business);
+
+        this._message.text = 'Negociação adicionada com sucesso!';
+        this._messageView.update(this._message)
+        
         this._cleanForm();
     }
 

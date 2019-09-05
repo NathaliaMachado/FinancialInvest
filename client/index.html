@@ -10,7 +10,7 @@
 <body class="container">
     
     <h1 class="text-center">Negociações</h1>
-    
+    <div id="messageView"></div>
     <form class="form" onsubmit="businessController.adiciona(event)">
         
         <div class="form-group">
@@ -48,6 +48,8 @@
     <script src="js/app/helpers/DateHelper.js"></script>
     <script src="js/app/models/ListBusiness.js"></script>
     <script src="js/app/views/BusinessView.js"></script>
+    <script src="js/app/models/Message.js"></script>
+    <script src="js/app/views/MessageView.js"></script>
     <script>
         let businessController = new BusinessController();
     </script>
