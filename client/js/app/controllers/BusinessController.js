@@ -5,10 +5,15 @@ class BusinessController {
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
+
         this._form = $('.form');
-        this._listBusiness = new ListBusiness();
+
+        this._listBusiness = new ListBusiness(model =>
+            this._businessView.update(model));
+
         this._businessView = new BusinessView($('#businessView'));
         this._businessView.update(this._listBusiness);
+
         this._message = new Message();
         this._messageView = new MessageView($('#messageView'));
         this._messageView.update(this._message);
@@ -18,12 +23,18 @@ class BusinessController {
         event.preventDefault();
 
         this._listBusiness.adiciona(this._createBusiness());
-        this._businessView.update(this._listBusiness);
 
         this._message.text = 'Negociação adicionada com sucesso!';
         this._messageView.update(this._message)
         
         this._cleanForm();
+    }
+
+    apaga() {
+        this._listBusiness.delete();
+
+        this._message.text = 'Transictions deleted with success!';
+        this._messageView.update(this._message);
     }
 
     _createBusiness() {
